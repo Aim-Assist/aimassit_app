@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:loginsys/src/constants/image_string.dart';
 import 'package:loginsys/src/constants/sizes.dart';
 import 'package:loginsys/src/constants/text_string.dart';
-import 'package:loginsys/src/features/authentication/screens/welcome/login_form_widget.dart';
-import 'package:loginsys/src/features/authentication/screens/welcome/login_header_widget.dart';
-
-
-
+import 'package:loginsys/src/features/authentication/screens/Login/widgets/login_form_widget.dart';
+import 'package:loginsys/src/features/authentication/screens/Login/widgets/login_header_widget.dart';
 
 class LoginFooterWidget extends StatelessWidget {
   const LoginFooterWidget({
@@ -37,8 +34,8 @@ class LoginFooterWidget extends StatelessWidget {
             children: const [
               TextSpan(
                 text: tSignUp,
-                style: TextStyle(color: Color.fromARGB(255, 2, 49, 103))
-                )
+                style: TextStyle(color: Color.fromARGB(255, 2, 49, 103)),
+                ),
             ]
             
             )),

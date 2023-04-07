@@ -3,8 +3,8 @@ import 'package:loginsys/src/constants/colors.dart';
 import 'package:loginsys/src/constants/image_string.dart';
 import 'package:loginsys/src/constants/sizes.dart';
 import 'package:loginsys/src/constants/text_string.dart';
-import 'package:loginsys/src/features/authentication/screens/welcome/Signup/signup_screen.dart';
-import 'package:loginsys/src/features/authentication/screens/welcome/login_screen.dart';
+import 'package:loginsys/src/features/authentication/screens/Signup/signup_screen.dart';
+import 'package:loginsys/src/features/authentication/screens/Login/login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loginsys/src/features/authentication/screens/welcome/Signup/widgets/signup_form_widget.dart';
+import 'package:loginsys/src/features/authentication/screens/Signup/widgets/signup_form_widget.dart';
 import 'package:loginsys/src/constants/colors.dart';
 import 'package:loginsys/src/constants/image_string.dart';
 import 'package:loginsys/src/constants/sizes.dart';

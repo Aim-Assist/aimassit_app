@@ -4,8 +4,8 @@ import 'package:loginsys/src/constants/colors.dart';
 import 'package:loginsys/src/constants/image_string.dart';
 import 'package:loginsys/src/constants/sizes.dart';
 import 'package:loginsys/src/constants/text_string.dart';
-import 'package:loginsys/src/features/authentication/screens/welcome/Signup/widgets/signup_form_widget.dart';
-import 'package:loginsys/src/BarChart/bar_chart.dart';
+import 'package:loginsys/src/features/authentication/screens/Signup/widgets/signup_form_widget.dart';
+import 'package:loginsys/src/common_widgets/BarChart/bar_chart.dart';
 import 'package:loginsys/src/BarChart/bar_model.dart';
 
 class Dashboard extends StatelessWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:loginsys/src/BarChart/bar_chart.dart';
+import 'package:loginsys/src/common_widgets/BarChart/bar_chart.dart';
 import 'package:loginsys/src/features/authentication/screens/Dashboard/dashboard.dart';
-import 'package:loginsys/src/features/authentication/screens/welcome/Signup/signup_screen.dart';
-import 'package:loginsys/src/features/authentication/screens/welcome/login_screen.dart';
+import 'package:loginsys/src/features/authentication/screens/Signup/signup_screen.dart';
+import 'package:loginsys/src/features/authentication/screens/Login/login_screen.dart';
 import 'package:loginsys/src/features/authentication/screens/welcome/welcome.dart';
 import 'package:loginsys/src/utils/theme/theme.dart';
 
