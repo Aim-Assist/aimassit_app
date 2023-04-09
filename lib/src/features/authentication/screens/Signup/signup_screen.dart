@@ -23,7 +23,7 @@ class SignUpScreen extends StatelessWidget {
                   title: tSignUpTitle, 
                   subTitle: tSignUpSubTitle),
 
-                  SignUpFormWidget(),
+                  const SignUpFormWidget(),
 
                   Column(
                     children: [
