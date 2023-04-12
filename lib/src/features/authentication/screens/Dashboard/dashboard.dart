@@ -10,6 +10,7 @@ import 'package:loginsys/src/common_widgets/BarChart/bar_chart.dart';
 import 'package:loginsys/src/common_widgets/BarChart/bar_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:loginsys/src/features/authentication/screens/welcome/welcome.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Dashboard extends StatefulWidget {
   // const Dashboard({super.key, required token, this.token});
@@ -24,6 +25,7 @@ class _DashboardState extends State<Dashboard> {
   late String email;
   late String name;
   late String id;
+  late SharedPreferences prefs;
 
 void initState() {
     super.initState();
@@ -32,24 +34,30 @@ void initState() {
     print(jwtDecoded);
     email = jwtDecoded['email'];
     name = jwtDecoded['name'];
-    id = jwtDecoded['id'];
+    id = jwtDecoded['_id'];
+    initSharedPref();
   }
 
-  // Future save() async {
-  //   var res = await http.post(
-  //       Uri.parse("https://aimassist-server.onrender.com/api/v1/user/logout"),
-  //       headers: <String, String>{
-  //         'Context-Type': 'application/json;charSet=UTF-8',
-  //       },
-  //       body: <String, String>{
-  //         '_id': id, 
-  //       });
-  //   // ignore: avoid_print
-  //   print(res.body);
-  //   // ignore: use_build_context_synchronously
-  //   Navigator.push(
-  //       context, new MaterialPageRoute(builder: (context) => WelcomeScreen()));
-  // }
+  void initSharedPref() async {
+    prefs = await SharedPreferences.getInstance();
+  }
+
+  Future save() async {
+    var res = await http.post(
+        Uri.parse("http://localhost:8000/api/v1/user/logout"),
+        headers: <String, String>{
+          'Context-Type': 'application/json;charSet=UTF-8',
+        },
+        body: <String, String>{
+          '_id': id, 
+        });
+    // ignore: avoid_print
+    print(res.body);
+    prefs.remove('token');
+    // ignore: use_build_context_synchronously
+    Navigator.push(
+        context, new MaterialPageRoute(builder: (context) => WelcomeScreen()));
+  }
 
 
   @override
@@ -80,7 +88,7 @@ void initState() {
               Text(tDashboardHeading, style: Theme.of(context).textTheme.headlineLarge),
               const BarChart(),
               ElevatedButton(onPressed: (){
-                // save();
+                save();
               }, child: const Text("Logout")),
             ]
           )

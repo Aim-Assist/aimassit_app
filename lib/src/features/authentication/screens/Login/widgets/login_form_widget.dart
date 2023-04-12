@@ -47,8 +47,6 @@ class _LoginFormState extends State<LoginForm> {
     var jsonRes = jsonDecode(res.body);
     if (jsonRes['success'] == true) {
       prefs.setString('token', jsonRes['token']);
-      print(jsonRes['token']);
-      // prefs.setString('user', jsonRes['user']);
       // ignore: use_build_context_synchronously
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => Dashboard(token : jsonRes['token'])));
