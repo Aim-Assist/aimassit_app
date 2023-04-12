@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "14908313922",
+    "project_id": "aim-assist-a3b61",
+    "storage_bucket": "aim-assist-a3b61.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14908313922:android:07af9eed27af4c5bb178db",
+        "android_client_info": {
+          "package_name": "com.example.loginsys"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "14908313922-kulcfcgb9b9mfu8s16t3s0hatk3da8ma.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKl-o0Nfq930m5OL31wf1T9gJBYyO_AkU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "14908313922-kulcfcgb9b9mfu8s16t3s0hatk3da8ma.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,8 +3,8 @@ const String tLogin = "Login";
 const String tSignUp = "Sign Up";
 
 // Welcome Screen Text
-const String tWelcomeTitle = 'Build Awesome Apps';
-const String tWelcomeSubtitle = "Let's put your creativity on the development highway.";
+const String tWelcomeTitle = 'AimAssist';
+const String tWelcomeSubtitle = "Train yourslef better with us";
 
 
 // -- Login Screen Text
