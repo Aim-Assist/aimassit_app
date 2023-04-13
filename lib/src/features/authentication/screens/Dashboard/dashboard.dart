@@ -5,6 +5,7 @@ import 'package:loginsys/src/constants/colors.dart';
 import 'package:loginsys/src/constants/image_string.dart';
 import 'package:loginsys/src/constants/sizes.dart';
 import 'package:loginsys/src/constants/text_string.dart';
+import 'package:loginsys/src/features/authentication/screens/Dashboard/session.dart';
 import 'package:loginsys/src/features/authentication/screens/Signup/widgets/signup_form_widget.dart';
 import 'package:loginsys/src/common_widgets/BarChart/bar_chart.dart';
 import 'package:loginsys/src/common_widgets/BarChart/bar_model.dart';
@@ -27,7 +28,7 @@ class _DashboardState extends State<Dashboard> {
   late String id;
   late SharedPreferences prefs;
 
-void initState() {
+  void initState() {
     super.initState();
     // print(JwtDecoder.isExpired(widget.token));
     Map<String, dynamic> jwtDecoded = JwtDecoder.decode(widget.token);
@@ -49,7 +50,7 @@ void initState() {
           'Context-Type': 'application/json;charSet=UTF-8',
         },
         body: <String, String>{
-          '_id': id, 
+          '_id': id,
         });
     // ignore: avoid_print
     print(res.body);
@@ -59,41 +60,53 @@ void initState() {
         context, new MaterialPageRoute(builder: (context) => WelcomeScreen()));
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading:  const Icon(Icons.menu, color: Colors.black),
-        title: Text(tAppname, style: Theme.of(context).textTheme.headline4,),
+        leading: const Icon(Icons.menu, color: Colors.black),
+        title: Text(
+          tAppname,
+          style: Theme.of(context).textTheme.headline4,
+        ),
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.transparent,
         actions: [
           Container(
             margin: const EdgeInsets.only(right: 20, top: 7),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: tCardBgColor),
-            child: IconButton(onPressed: (){},icon: const Image(image: AssetImage(tUserprofileImage))),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10), color: tCardBgColor),
+            child: IconButton(
+                onPressed: () {},
+                icon: const Image(image: AssetImage(tUserprofileImage))),
           )
         ],
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.all(tDashboardPadding),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children:[
-              Text("Welcome $name", style: Theme.of(context).textTheme.headlineSmall),
+            padding: const EdgeInsets.all(tDashboardPadding),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text("Welcome $name",
+                  style: Theme.of(context).textTheme.headlineSmall),
               // Text(tDashboardTitle, style: Theme.of(context).textTheme.bodyMedium),
-              Text(tDashboardHeading, style: Theme.of(context).textTheme.headlineLarge),
+              Text(tDashboardHeading,
+                  style: Theme.of(context).textTheme.headlineLarge),
               const BarChart(),
-              ElevatedButton(onPressed: (){
-                save();
-              }, child: const Text("Logout")),
-            ]
-          )
-        ),
-        ),
+              ElevatedButton(
+                  onPressed: () {
+                    save();
+                  },
+                  child: const Text("Logout")),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const MyHomePage()));
+                  },
+                  child: const Text("Session")),
+            ])),
+      ),
     );
   }
 }

@@ -362,16 +362,22 @@ class _MyHomePageState extends State<MyHomePage> {
   int _timerSeconds = 120;
   bool _timerActive = false;
   String _displayText = '';
+  late String _token;
   late SharedPreferences prefs;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    initSharedPref();
+    _getToken();
   }
 
-  void initSharedPref() async {
-    prefs = await SharedPreferences.getInstance();
+  _getToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // ignore: await_only_futures
+    late String token = prefs.getString('token')!;
+    setState(() {
+      _token = token;
+    });
   }
 
   void _startTimer() {
@@ -411,13 +417,16 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: const Text('Congratulations!'),
-            content: const Text('You are being navigated to Dashboard for analytics'),
+            content: const Text(
+                'You are being navigated to Dashboard for analytics'),
             actions: [
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pop(context);
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const Dashboard()));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Dashboard(token: _token)),
+                  );
                 },
                 child: const Text('OK'),
               ),

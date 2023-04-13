@@ -3,14 +3,30 @@ import 'package:loginsys/src/constants/colors.dart';
 import 'package:loginsys/src/constants/image_string.dart';
 import 'package:loginsys/src/constants/sizes.dart';
 import 'package:loginsys/src/constants/text_string.dart';
+import 'package:loginsys/src/features/authentication/screens/Dashboard/dashboard.dart';
 import 'package:loginsys/src/features/authentication/screens/Signup/signup_screen.dart';
 import 'package:loginsys/src/features/authentication/screens/Login/login_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 
+  Future<void> checkToken(context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    late String token = prefs.getString('token')!;
+    if (token != null && token.isNotEmpty) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Dashboard(token: token)),
+      );
+    } else {
+      // Show an error message or redirect to a login screen.
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    checkToken(context);
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
         body: Container(
