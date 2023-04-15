@@ -1,12 +1,18 @@
+import 'package:charts_flutter/flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:loginsys/src/Charts/LineChart/line_Chart.dart';
+import 'package:loginsys/src/cardSlider/cardslider.dart';
 import 'package:loginsys/src/common_widgets/form/form_header_widget.dart';
 import 'package:loginsys/src/constants/colors.dart';
 import 'package:loginsys/src/constants/image_string.dart';
 import 'package:loginsys/src/constants/sizes.dart';
 import 'package:loginsys/src/constants/text_string.dart';
+import 'package:loginsys/src/features/authentication/screens/Dashboard/widgets/Scrollable.dart';
 import 'package:loginsys/src/features/authentication/screens/welcome/Signup/widgets/signup_form_widget.dart';
-import 'package:loginsys/src/BarChart/bar_chart.dart';
-import 'package:loginsys/src/BarChart/bar_model.dart';
+import 'package:loginsys/src/Charts/BarChart/bar_chart.dart';
+// import 'package:loginsys/src/Charts/BarChart/bar_chart.dart';
+
+
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
@@ -36,11 +42,23 @@ class Dashboard extends StatelessWidget {
             children:[
               Text(tDashboardTitle, style: Theme.of(context).textTheme.bodyMedium),
               Text(tDashboardHeading, style: Theme.of(context).textTheme.headlineLarge),
-              const BarChart()
+
+              
+
+              const DashboardScrollable(),
+              
+              Barchart(),
+              
+              LineChartWidget(),
+
+
+
+
             ]
           )
         ),
         ),
+        
     );
   }
 }

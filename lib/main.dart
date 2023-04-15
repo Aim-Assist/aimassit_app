@@ -2,7 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loginsys/firebase_options.dart';
-import 'package:loginsys/src/BarChart/bar_chart.dart';
+import 'package:loginsys/src/Charts/BarChart/bar_chart.dart';
+import 'package:loginsys/src/cardSlider/cardslider.dart';
 import 'package:loginsys/src/features/authentication/authentication_repository.dart';
 import 'package:loginsys/src/features/authentication/screens/Dashboard/dashboard.dart';
 import 'package:loginsys/src/features/authentication/screens/Dashboard/startsession/Dashboard1.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
       themeMode: ThemeMode.system,
-      home: const WelcomeScreen(),
+      home: Dashboard(),
     );
   }
 }

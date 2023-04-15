@@ -46,6 +46,10 @@ dependencies:
   firebase_core: ^2.9.0
   firebase_auth: ^4.4.0
   get: ^4.6.5
+  sliding_card: ^0.1.2
+  carousel_slider: ^4.2.1
+  syncfusion_flutter_gauges: ^21.1.39
+  flutter_circular_slider: ^2.5.0
 
 dev_dependencies:
   flutter_test:
