@@ -5,6 +5,7 @@ import 'package:loginsys/src/constants/image_string.dart';
 import 'package:loginsys/src/constants/sizes.dart';
 import 'package:loginsys/src/constants/text_string.dart';
 import 'package:loginsys/src/features/authentication/screens/welcome/Signup/widgets/signup_form_widget.dart';
+import 'package:loginsys/src/features/authentication/screens/welcome/login_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -28,6 +29,7 @@ class SignUpScreen extends StatelessWidget {
                   Column(
                     children: [
                       const Text("OR"),
+                      SizedBox(height: 20,),
                       SizedBox(
                         width:double.infinity,
                         child: OutlinedButton.icon(onPressed: (){}, 
@@ -35,11 +37,16 @@ class SignUpScreen extends StatelessWidget {
                         label: Text(tSignInWithGoogle.toUpperCase()),
                         ),
                       ),
-                      TextButton(onPressed: (){}, 
+                      SizedBox(height: 20,),
+                      TextButton(onPressed: (){
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const LoginScreen()));
+                      }, 
+                      
                       child: Text.rich(TextSpan(
                       children:[
                         TextSpan(text: tAlreadyHaveAnAccount, style: Theme.of(context).textTheme.bodyText1),
-                        TextSpan(text: tLogin.toUpperCase())
+                        TextSpan(text: tLogin.toUpperCase(), )
                       ]
                       )
                       )

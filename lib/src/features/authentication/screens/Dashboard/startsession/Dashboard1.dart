@@ -340,6 +340,7 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:loginsys/src/features/authentication/screens/Dashboard/Profile/profile.dart';
 import 'dart:async';
 
 import '../../../../../constants/colors.dart';
@@ -408,7 +409,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   // Navigator.pop(context);
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const Dashboard()));
+                      builder: (context) => const Dashboard()
+                      ));
                 },
                 child: Text('OK'),
               ),
@@ -441,7 +443,11 @@ class _MyHomePageState extends State<MyHomePage> {
           Container(
             margin: const EdgeInsets.only(right: 20, top: 7),
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: tCardBgColor),
-            child: IconButton(onPressed: (){},icon: const Image(image: AssetImage(tUserprofileImage))),
+            child: IconButton(onPressed: (){
+              Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const FullScreenUI()
+                      ));
+            },icon: const Image(image: AssetImage(tUserprofileImage))),
           )
         ],
       ),

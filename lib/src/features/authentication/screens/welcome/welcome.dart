@@ -42,7 +42,7 @@ class WelcomeScreen extends StatelessWidget {
                 },
                 style: OutlinedButton.styleFrom(
                     shape: const RoundedRectangleBorder(),
-                    foregroundColor: tSecondaryColor,
+                    foregroundColor: tWhiteColor,
                     side: const BorderSide(color: tSecondaryColor),
                     padding:
                         const EdgeInsets.symmetric(vertical: tButtonHeight)),

@@ -1,5 +1,6 @@
 import 'package:charts_flutter/flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:loginsys/src/Charts/BarChart/bar_card.dart';
 import 'package:loginsys/src/Charts/LineChart/line_Chart.dart';
 import 'package:loginsys/src/cardSlider/cardslider.dart';
 import 'package:loginsys/src/common_widgets/form/form_header_widget.dart';
@@ -7,9 +8,13 @@ import 'package:loginsys/src/constants/colors.dart';
 import 'package:loginsys/src/constants/image_string.dart';
 import 'package:loginsys/src/constants/sizes.dart';
 import 'package:loginsys/src/constants/text_string.dart';
+import 'package:loginsys/src/features/authentication/screens/Dashboard/Profile/profile.dart';
 import 'package:loginsys/src/features/authentication/screens/Dashboard/widgets/Scrollable.dart';
+import 'package:loginsys/src/features/authentication/screens/Dashboard/widgets/startbuttoncard.dart';
 import 'package:loginsys/src/features/authentication/screens/welcome/Signup/widgets/signup_form_widget.dart';
 import 'package:loginsys/src/Charts/BarChart/bar_chart.dart';
+
+import 'widgets/prevsessionbutton.dart';
 // import 'package:loginsys/src/Charts/BarChart/bar_chart.dart';
 
 
@@ -30,7 +35,11 @@ class Dashboard extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(right: 20, top: 7),
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: tCardBgColor),
-            child: IconButton(onPressed: (){},icon: const Image(image: AssetImage(tUserprofileImage))),
+            child: IconButton(onPressed: (){
+              Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const FullScreenUI()
+                      ));
+            },icon: const Image(image: AssetImage(tUserprofileImage))),
           )
         ],
       ),
@@ -43,11 +52,29 @@ class Dashboard extends StatelessWidget {
               Text(tDashboardTitle, style: Theme.of(context).textTheme.bodyMedium),
               Text(tDashboardHeading, style: Theme.of(context).textTheme.headlineLarge),
 
-              
+              SizedBox(height: 6),
 
               const DashboardScrollable(),
+
+
+              SizedBox(height: 6),
+
+              JourneyCard(),
+
+              SizedBox(height: 6),
+
+              PreJourneyCard(),
+
+              SizedBox(height: 6),
+
+              // Barchartcard(),
+
               
               Barchart(),
+
+              
+
+              SizedBox(height: 6),
               
               LineChartWidget(),
 

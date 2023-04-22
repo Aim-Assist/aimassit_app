@@ -5,6 +5,8 @@ import 'package:loginsys/src/constants/text_string.dart';
 import 'package:loginsys/src/features/authentication/screens/welcome/login_form_widget.dart';
 import 'package:loginsys/src/features/authentication/screens/welcome/login_header_widget.dart';
 
+import 'Signup/signup_screen.dart';
+
 
 
 
@@ -19,6 +21,7 @@ class LoginFooterWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const Text("OR"),
+        SizedBox(height: 20,),
         SizedBox(
           width: double.infinity,
           child: OutlinedButton.icon(
@@ -29,7 +32,10 @@ class LoginFooterWidget extends StatelessWidget {
         const SizedBox(
           height: tFormHeight -20,
         ),
-        TextButton(onPressed: (){}, 
+        TextButton(onPressed: (){
+          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const SignUpScreen()));
+        }, 
         child: Text.rich(
           TextSpan(
             text: tDontHaveAnAccount,

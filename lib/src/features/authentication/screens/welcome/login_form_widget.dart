@@ -69,7 +69,7 @@ class LoginForm extends StatelessWidget {
                       LoginController.instance.loginUser(controller.email.text, controller.password.text);
 
                       Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const MyHomePage()));
+                      builder: (context) => const Dashboard()));
                     }
               },
               child: Text(tLogin.toUpperCase()

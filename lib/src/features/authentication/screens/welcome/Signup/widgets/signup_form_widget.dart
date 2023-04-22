@@ -32,7 +32,10 @@ class SignUpFormWidget extends StatelessWidget {
             TextFormField(
               controller: controller.fullName,
               decoration: const InputDecoration(
-                label: Text(tFullName),
+                label: Text(tFullName,
+                style: TextStyle(
+                  color: Colors.white,
+                ),),
                 prefixIcon: Icon(
                   Icons.person_outline_rounded,
                   
@@ -50,7 +53,10 @@ class SignUpFormWidget extends StatelessWidget {
               controller: controller.email,
 
               decoration: const InputDecoration(
-                label: Text(tEmail),
+                label: Text(tEmail,
+                style: TextStyle(
+                  color: Colors.white,
+                ),),
                 prefixIcon: Icon(
                   Icons.person_outline_rounded,
                   
@@ -67,7 +73,10 @@ class SignUpFormWidget extends StatelessWidget {
               TextFormField(
                 controller: controller.phoneNo,
               decoration: const InputDecoration(
-                label: Text(tPhoneNo),
+                label: Text(tPhoneNo,
+                style: TextStyle(
+                  color: Colors.white,
+                ),),
                 prefixIcon: Icon(
                   Icons.person_outline_rounded,
                   
@@ -85,7 +94,11 @@ class SignUpFormWidget extends StatelessWidget {
               TextFormField(
                 controller: controller.password,
               decoration: const InputDecoration(
-                label: Text(tpassword),
+                label: Text(tpassword, 
+                style: TextStyle(
+                  color: Colors.white,
+                ),),
+
                 prefixIcon: Icon(
                   Icons.person_outline_rounded,
                   
@@ -98,6 +111,7 @@ class SignUpFormWidget extends StatelessWidget {
               ),
               ),
               const SizedBox(height: tFormHeight-20),
+              SizedBox(height: 20,),
 
               SizedBox(
                 width: double.infinity,
