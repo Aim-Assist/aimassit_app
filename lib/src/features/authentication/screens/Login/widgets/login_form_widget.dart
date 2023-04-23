@@ -6,7 +6,7 @@ import 'package:loginsys/src/constants/sizes.dart';
 import 'package:loginsys/src/constants/text_string.dart';
 import 'package:loginsys/src/features/authentication/controller/login.dart';
 import 'package:loginsys/src/features/authentication/screens/Dashboard/dashboard.dart';
-import 'package:loginsys/src/features/authentication/screens/Dashboard/session.dart';
+import 'package:loginsys/src/features/authentication/screens/Sessions/session.dart';
 import 'package:loginsys/src/features/authentication/screens/Login/login_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:loginsys/src/common_widgets/BarChart/bar_chart.dart';
 import 'package:loginsys/src/features/authentication/screens/Dashboard/dashboard.dart';
-import 'package:loginsys/src/features/authentication/screens/Dashboard/session.dart';
+import 'package:loginsys/src/features/authentication/screens/Sessions/session.dart';
 import 'package:loginsys/src/features/authentication/screens/Signup/signup_screen.dart';
 import 'package:loginsys/src/features/authentication/screens/Login/login_screen.dart';
 import 'package:loginsys/src/features/authentication/screens/welcome/welcome.dart';
