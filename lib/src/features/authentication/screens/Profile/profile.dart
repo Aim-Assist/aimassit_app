@@ -114,9 +114,30 @@
 
 import 'package:flutter/material.dart';
 import 'package:loginsys/src/features/authentication/screens/Dashboard/dashboard.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class FullScreenUI extends StatelessWidget {
+class FullScreenUI extends StatefulWidget {
+
   const FullScreenUI({Key? key}) : super(key: key);
+
+  @override
+  State<FullScreenUI> createState() => _FullScreenUIState();
+}
+
+class _FullScreenUIState extends State<FullScreenUI> {
+  late SharedPreferences prefs;
+  late String token;
+
+  void initSharedPref() async {
+    prefs = await SharedPreferences.getInstance();
+    token = prefs.getString('token')!;
+  }
+
+  void initState() {
+    super.initState();
+    initSharedPref();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -267,9 +288,12 @@ class FullScreenUI extends StatelessWidget {
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const Dashboard()
-                      ));
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Dashboard(token: token,),
+                                ),
+                              );
                             },
                             child: Text(
                               'Dashboard',

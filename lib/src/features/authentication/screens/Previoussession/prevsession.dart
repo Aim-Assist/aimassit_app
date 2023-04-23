@@ -76,7 +76,7 @@ class PreviousSessionsScreen extends StatelessWidget {
                     child: Card(
                       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                      color: Colors.black,
+                      // color: Colors.black,
                       child: Padding(
                         padding: const EdgeInsets.all(16),
                         child: Column(
