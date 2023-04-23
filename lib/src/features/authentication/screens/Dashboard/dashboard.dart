@@ -93,7 +93,7 @@ class _DashboardState extends State<Dashboard> {
               // Text(tDashboardTitle, style: Theme.of(context).textTheme.bodyMedium),
               Text(tDashboardHeading,
                   style: Theme.of(context).textTheme.headlineLarge),
-              const BarChart(),
+              const Barchart(),
               ElevatedButton(
                   onPressed: () {
                     save();
