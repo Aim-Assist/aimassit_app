@@ -7,7 +7,7 @@ import 'package:loginsys/src/features/authentication/screens/Profile/profile.dar
 class SessionDetailScreen extends StatelessWidget {
   final int sessionNumber;
   final double avgScore;
-  final List<double> scores;
+  final List<dynamic> scores;
 
   const SessionDetailScreen(
       {Key? key,

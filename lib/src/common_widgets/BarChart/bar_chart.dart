@@ -796,20 +796,21 @@ import 'package:flutter/widgets.dart';
 import 'Bar_model.dart';
 
 class Barchart extends StatelessWidget {
+  // final List<charts.Series<Barmodel, String>> userData;
   const Barchart({Key? key}) : super(key: key);
 
   static List<charts.Series<Barmodel, String>> _createSampleData() {
     final data = [
-      Barmodel("1", 5),
-      Barmodel("2", 4),
-      Barmodel("3", 4),
-      Barmodel("4", 4),
-      Barmodel("5", 4),
-      Barmodel("6", 4),
-      Barmodel("7", 4),
-      Barmodel("8", 4),
-      Barmodel("9", 5),
-      Barmodel("10", 5),
+      Barmodel("1", 56),
+      Barmodel("2", 48),
+      Barmodel("3", 79),
+      Barmodel("4", 93),
+      Barmodel("5", 100),
+      Barmodel("6", 42),
+      Barmodel("7", 23),
+      Barmodel("8", 65),
+      Barmodel("9", 87),
+      Barmodel("10", 51),
     ];
     return [
       charts.Series<Barmodel, String>(
@@ -855,7 +856,7 @@ class Barchart extends StatelessWidget {
                 charts.BasicNumericTickProviderSpec(desiredTickCount: 5),
             // set maximum value to 5 and minimum value to 0
             // and add 1 unit padding to both sides
-            viewport: charts.NumericExtents(0, 6),
+            viewport: charts.NumericExtents(0, 100),
           ),
           domainAxis: charts.OrdinalAxisSpec(
             renderSpec: charts.SmallTickRendererSpec(
