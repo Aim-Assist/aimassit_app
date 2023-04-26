@@ -432,10 +432,9 @@
 //         ),
 //       ),
 //     );
-    
+
 //   }
 // }
-
 
 // import 'package:flutter/material.dart';
 // // ignore: depend_on_referenced_packages
@@ -791,36 +790,35 @@
 
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:flutter/widgets.dart';
 
 import 'Bar_model.dart';
 
-class Barchart extends StatelessWidget {
-  // final List<charts.Series<Barmodel, String>> userData;
-  const Barchart({Key? key}) : super(key: key);
+class Barchart extends StatefulWidget {
+  final List userData;
+  const Barchart({Key? key, required this.userData}) : super(key: key);
 
-  static List<charts.Series<Barmodel, String>> _createSampleData() {
-    final data = [
-      Barmodel("1", 56),
-      Barmodel("2", 48),
-      Barmodel("3", 79),
-      Barmodel("4", 93),
-      Barmodel("5", 100),
-      Barmodel("6", 42),
-      Barmodel("7", 23),
-      Barmodel("8", 65),
-      Barmodel("9", 87),
-      Barmodel("10", 51),
-    ];
-    return [
-      charts.Series<Barmodel, String>(
-        data: data,
-        id: 'Current Session',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-        domainFn: (Barmodel barModel1, _) => barModel1.bullet,
-        measureFn: (Barmodel barModel1, _) => barModel1.score,
-      )
-    ];
+  @override
+  State<Barchart> createState() => _BarchartState();
+}
+
+class _BarchartState extends State<Barchart> {
+  final List<Barmodel> data = [];
+
+  _createSampleData(userData) async {
+    for (var i = 0; i < userData.length; i++) {
+      setState(() {
+        data.add(Barmodel("${i + 1}", userData[i]));
+      });
+    }
+
+    return data;
+  }
+
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 1), () {
+      _createSampleData(widget.userData);
+    });
   }
 
   @override
@@ -829,14 +827,19 @@ class Barchart extends StatelessWidget {
       child: SizedBox(
         height: 300,
         child: charts.BarChart(
-          _createSampleData(),
+          [
+            charts.Series<Barmodel, String>(
+              data: data,
+              id: 'Current Session',
+              colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+              domainFn: (Barmodel barModel1, _) => barModel1.bullet,
+              measureFn: (Barmodel barModel1, _) => barModel1.score,
+            )
+          ],
           animate: true,
           barRendererDecorator: charts.BarLabelDecorator<String>(
             labelAnchor: charts.BarLabelAnchor.end,
             labelPosition: charts.BarLabelPosition.auto,
-            // labelPadding: const EdgeInsets.symmetric(horizontal: 2.0),
-            // outsideLabelPadding: const EdgeInsets.only(top: 5.0),
-
             outsideLabelStyleSpec: charts.TextStyleSpec(
               fontSize: 12,
               color: charts.MaterialPalette.gray.shade300,
@@ -856,7 +859,7 @@ class Barchart extends StatelessWidget {
                 charts.BasicNumericTickProviderSpec(desiredTickCount: 5),
             // set maximum value to 5 and minimum value to 0
             // and add 1 unit padding to both sides
-            viewport: charts.NumericExtents(0, 100),
+            viewport: charts.NumericExtents(0, 6),
           ),
           domainAxis: charts.OrdinalAxisSpec(
             renderSpec: charts.SmallTickRendererSpec(
@@ -872,6 +875,5 @@ class Barchart extends StatelessWidget {
         ),
       ),
     );
-    
   }
 }

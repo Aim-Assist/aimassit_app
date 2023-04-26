@@ -29,21 +29,15 @@ class _PreviousSessionsScreenState extends State<PreviousSessionsScreen> {
     _token = prefs.getString('token')!;
     Map<String, dynamic> jwtDecoded = JwtDecoder.decode(_token);
     _id = jwtDecoded['_id'];
-    print(_id);
     var res = await http.get(
         Uri.parse("http://localhost:8000/api/v1/round/getUserRounds/$_id"),
         headers: <String, String>{
           'Context-Type': 'application/json;charSet=UTF-8',
         });
-
-    print("Response hai");
     sessions = jsonDecode(res.body);
-    // set state of session data
     setState(() {
       _sessiondata = sessions['data'];
     });
-    // _sessiondata = sessions['data'];
-    print(_sessiondata);
   }
 
   void initState() {
@@ -114,7 +108,7 @@ class _PreviousSessionsScreenState extends State<PreviousSessionsScreen> {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => SessionDetailScreen(
-                            sessionNumber: index+1,
+                            sessionNumber: index + 1,
                             // avgScore: session.avgScore.toDouble(),
                             avgScore: 60,
                             scores: session['scores'].toList(growable: false),
@@ -134,7 +128,7 @@ class _PreviousSessionsScreenState extends State<PreviousSessionsScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Session ${index+1}',
+                              'Session ${index + 1}',
                               style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,

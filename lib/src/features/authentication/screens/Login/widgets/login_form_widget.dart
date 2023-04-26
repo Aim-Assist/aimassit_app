@@ -50,7 +50,7 @@ class _LoginFormState extends State<LoginForm> {
       prefs.setString('token', jsonRes['token']);
       // ignore: use_build_context_synchronously
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const MyHomePage()));
+          context, MaterialPageRoute(builder: (context) => Dashboard(token: jsonRes['token'],)));
     } else {
       setState(() {
         _isNotValid = true;

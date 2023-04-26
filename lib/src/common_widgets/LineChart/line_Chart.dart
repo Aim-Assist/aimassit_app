@@ -3,37 +3,37 @@ import 'package:charts_flutter/flutter.dart' as charts;
 
 import 'Line_model.dart';
 
-class LineChartWidget extends StatelessWidget {
+class LineChartWidget extends StatefulWidget {
+  final List userData;
+  const LineChartWidget({super.key, required this.userData});
+
   // final List<charts.Series<LineModel, int>> seriesList;
-  
 
   // const LineChartWidget(this.seriesList, {this.animate = true});
 
-  static List<charts.Series<LineModel, int>> _createSampleData() {
-    final data = [
-      LineModel(0, 10),
-      LineModel(1, 20),
-      LineModel(2, 30),
-      LineModel(3, 40),
-      LineModel(4, 50),
-      LineModel(5, 60),
-      LineModel(6, 70),
-      LineModel(7, 80),
-      LineModel(8, 90),
-      LineModel(9, 100),
-    ];
+  @override
+  State<LineChartWidget> createState() => _LineChartWidgetState();
+}
 
-    return [
-      charts.Series<LineModel, int>(
-        id: 'Accuracy',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-        domainFn: (LineModel lineModel, _) => lineModel.session,
-        measureFn: (LineModel lineModel, _) => lineModel.accuracy,
-        data: data,
-      )
-    ];
+class _LineChartWidgetState extends State<LineChartWidget> {
+  final List<LineModel> data = [LineModel(0,0)];
+
+  _createSampleData(userData) async {
+    for (var i = 0; i < userData.length; i++) {
+      setState(() {
+        data.add(LineModel(i+1,userData[i]));
+      });
+    }
+
+    return data;
   }
 
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 1), () {
+      _createSampleData(widget.userData);
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -42,8 +42,15 @@ class LineChartWidget extends StatelessWidget {
         child: SizedBox(
           height: 300,
           child: charts.LineChart(
-          //   seriesList,
-            _createSampleData(),
+            //   seriesList,
+            [
+              charts.Series<LineModel, int>(
+                  id: 'Accuracy',
+                  colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+                  domainFn: (LineModel lineModel, _) => lineModel.session,
+                  measureFn: (LineModel lineModel, _) => lineModel.accuracy,
+                  data: data),
+            ],
             animate: true,
             primaryMeasureAxis: charts.NumericAxisSpec(
               tickProviderSpec:
@@ -60,7 +67,7 @@ class LineChartWidget extends StatelessWidget {
             ),
             domainAxis: charts.NumericAxisSpec(
               tickProviderSpec:
-                  charts.BasicNumericTickProviderSpec(desiredTickCount: 10),
+                  charts.BasicNumericTickProviderSpec(desiredTickCount: 6),
               renderSpec: charts.GridlineRendererSpec(
                 lineStyle: charts.LineStyleSpec(
                   color: charts.MaterialPalette.gray.shade300,
@@ -77,5 +84,3 @@ class LineChartWidget extends StatelessWidget {
     );
   }
 }
-
-

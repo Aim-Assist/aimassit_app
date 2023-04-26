@@ -90,11 +90,13 @@ import '../../../../../constants/sizes.dart';
 import 'package:loginsys/src/features/authentication/screens/Dashboard/widgets/categories.dart';
 
 class DashboardScrollable extends StatelessWidget {
-  const DashboardScrollable({Key? key});
+
+  final List list2;
+  const DashboardScrollable({Key? key, required this.list2});
 
   @override
   Widget build(BuildContext context) {
-    final list = DashboardCategoriesModel.list;
+    final list = list2;
     return SizedBox(
       height: 200,
       child: ListView.builder(

@@ -34,7 +34,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               });
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => LineChartWidget()),
+                MaterialPageRoute(builder: (context) => LineChartWidget(userData: [],)),
               );
             },
           ),
@@ -50,7 +50,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               });
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Barchart())
+                MaterialPageRoute(builder: (context) => Barchart(userData: [],))
               );
             },
           ),
@@ -114,17 +114,17 @@ class _MenuItemsState extends State<MenuItems>
           ListTile(
             leading: Icon(Icons.line_style),
             title: Text('Line Chart'),
-            onTap: (){LineChartWidget();},
+            onTap: (){LineChartWidget(userData: [],);},
           ),
           ListTile(
             leading: Icon(Icons.bar_chart),
             title: Text('Bar Chart'),
-            onTap: (){LineChartWidget();},
+            onTap: (){LineChartWidget(userData: [],);},
           ),
           ListTile(
             leading: Icon(Icons.show_chart),
             title: Text('Mixed Chart'),
-            onTap: (){LineChartWidget();},
+            onTap: (){LineChartWidget(userData: [],);},
           ),
         ],
       ),
