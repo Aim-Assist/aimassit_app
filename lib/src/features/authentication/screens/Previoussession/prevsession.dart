@@ -109,8 +109,9 @@ class _PreviousSessionsScreenState extends State<PreviousSessionsScreen> {
                         MaterialPageRoute(
                           builder: (context) => SessionDetailScreen(
                             sessionNumber: index + 1,
+                            avgScore: session['roundData']["accuracy"] != null ? session['roundData']["accuracy"] : 60,
                             // avgScore: session.avgScore.toDouble(),
-                            avgScore: 60,
+                            // avgScore: 60,
                             scores: session['scores'].toList(growable: false),
                           ),
                         ),
@@ -136,7 +137,7 @@ class _PreviousSessionsScreenState extends State<PreviousSessionsScreen> {
                             ),
                             const SizedBox(height: 8),
                             Text(
-                              'Your avg score: 60',
+                              'Your avg score: ${session['roundData']["accuracy"] != null ? session['roundData']["accuracy"] : 60}',
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,

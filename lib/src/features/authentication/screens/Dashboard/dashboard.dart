@@ -57,7 +57,7 @@ class _DashboardState extends State<Dashboard> {
       DashboardCategoriesModel.list.add(DashboardCategoriesModel("Accuracy",
           "Score", "${user['data']["latestroundData"]["accuracy"]}", null));
       DashboardCategoriesModel.list.add(DashboardCategoriesModel("Distance",
-          "Score", "${user['data']["latestroundData"]["distance"]}", null));
+          "Meters", "${user['data']["latestroundData"]["distance"]}", null));
       DashboardCategoriesModel.list.add(DashboardCategoriesModel("Best Angle",
           "Angle", "${user['data']["latestroundData"]["bestangle"]}", null));
       DashboardCategoriesModel.list.add(DashboardCategoriesModel("Worst Angle",
