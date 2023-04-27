@@ -40,11 +40,12 @@ class _DashboardState extends State<Dashboard> {
   late Map<int, int> freq;
 
   Future getBarData() async {
+    
     var res = await http.get(
-        Uri.parse("http://localhost:8000/api/v1/user/getUser?id=$id"),
-        headers: <String, String>{
-          'Context-Type': 'application/json;charSet=UTF-8',
-        });
+        Uri.parse("http://localhost:8000/api/v1/user/getUser?id=$id"));
+        // headers: <String, String>{
+        //   'Context-Type': 'application/json;charSet=UTF-8',
+        // });
 
     user = jsonDecode(res.body);
     for (var i = 0; i < 10; i++) {

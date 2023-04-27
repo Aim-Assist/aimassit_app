@@ -35,27 +35,36 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   Future save() async {
-    var res = await http.post(
-        Uri.parse("http://localhost:8000/api/v1/user/login"),
-        headers: <String, String>{
-          'Context-Type': 'application/json;charSet=UTF-8',
-        },
-        body: <String, String>{
-          'email': loginUser.email,
-          'password': loginUser.password
+    try {
+      var res = await http.post(
+          Uri.parse("http://localhost:8000/api/v1/user/login"),
+          // headers: <String, String>{
+          //   'Context-Type': 'application/json;charSet=UTF-8',
+          // },
+          body: <String, String>{
+            'email': "${loginUser.email}",
+            'password': "${loginUser.password}"
+          });
+      var jsonRes = jsonDecode(res.body);
+      print(jsonRes['token']);
+      if (jsonRes['success'] == true) {
+        prefs.setString('token', jsonRes['token']);
+        // ignore: use_build_context_synchronously
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Dashboard(
+                      token: jsonRes['token'],
+                    )));
+      } else {
+        setState(() {
+          _isNotValid = true;
         });
-    // ignore: avoid_print
-    var jsonRes = jsonDecode(res.body);
-    if (jsonRes['success'] == true) {
-      prefs.setString('token', jsonRes['token']);
-      // ignore: use_build_context_synchronously
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Dashboard(token: jsonRes['token'],)));
-    } else {
-      setState(() {
-        _isNotValid = true;
-      });
+      }
+    } catch (err) {
+      print(err);
     }
+    // ignore: avoid_print
   }
 
   LoginUser loginUser = LoginUser("", "");
@@ -125,7 +134,8 @@ class _LoginFormState extends State<LoginForm> {
                       print(loginUser.password);
                       save();
                     }
-                  }, child: Text(tLogin.toUpperCase())),
+                  },
+                  child: Text(tLogin.toUpperCase())),
             )
           ],
         ),

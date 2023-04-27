@@ -108,20 +108,21 @@ class _SessionDetailScreenState extends State<SessionDetailScreen> {
                         children: [
                           TableCell(
                               child: Text('Index',
+                              
                                   style:
-                                      TextStyle(fontWeight: FontWeight.bold), textAlign: TextAlign.center)),
+                                      TextStyle(color: Colors.black,fontWeight: FontWeight.bold), textAlign: TextAlign.center)),
                           TableCell(
                             child: Text('Angle',
-                                style: TextStyle(fontWeight: FontWeight.bold),textAlign: TextAlign.center),
+                                style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),textAlign: TextAlign.center),
                           ),
                           TableCell(
                               child: Text('Distance',
                                   style:
-                                      TextStyle(fontWeight: FontWeight.bold), textAlign: TextAlign.center)),
+                                      TextStyle(color: Colors.black,fontWeight: FontWeight.bold), textAlign: TextAlign.center)),
                           TableCell(
                               child: Text('Score',
                                   style:
-                                      TextStyle(fontWeight: FontWeight.bold), textAlign: TextAlign.center)),
+                                      TextStyle(color: Colors.black,fontWeight: FontWeight.bold), textAlign: TextAlign.center)),
                         ]),
                     for (int i = 1; i <= widget.scores.length; i++)
                       TableRow(
@@ -129,10 +130,10 @@ class _SessionDetailScreenState extends State<SessionDetailScreen> {
                             color: Color.fromARGB(255, 252, 238, 238),
                           ),
                           children: [
-                            TableCell(child: Text('$i', textAlign: TextAlign.center)),
-                            TableCell(child: Text('${widget.scores[i - 1][0]}', textAlign: TextAlign.center)),
-                            TableCell(child: Text('${widget.scores[i - 1][1]}', textAlign: TextAlign.center)),
-                            TableCell(child: Text('${widget.scores[i - 1][2]}', textAlign: TextAlign.center)),
+                            TableCell(child: Text('$i', style: TextStyle(color: Colors.black),textAlign: TextAlign.center,)),
+                            TableCell(child: Text('${widget.scores[i - 1][0]}',style: TextStyle(color: Colors.black), textAlign: TextAlign.center)),
+                            TableCell(child: Text('${widget.scores[i - 1][1]}',style: TextStyle(color: Colors.black), textAlign: TextAlign.center)),
+                            TableCell(child: Text('${widget.scores[i - 1][2]}',style: TextStyle(color: Colors.black), textAlign: TextAlign.center)),
                           ]),
                   ],
                 ),

@@ -30,10 +30,10 @@ class _PreviousSessionsScreenState extends State<PreviousSessionsScreen> {
     Map<String, dynamic> jwtDecoded = JwtDecoder.decode(_token);
     _id = jwtDecoded['_id'];
     var res = await http.get(
-        Uri.parse("http://localhost:8000/api/v1/round/getUserRounds/$_id"),
-        headers: <String, String>{
-          'Context-Type': 'application/json;charSet=UTF-8',
-        });
+        Uri.parse("http://localhost:8000/api/v1/round/getUserRounds/$_id"));
+        // headers: <String, String>{
+        //   'Context-Type': 'application/json;charSet=UTF-8',
+        // });
     sessions = jsonDecode(res.body);
     setState(() {
       _sessiondata = sessions['data'];

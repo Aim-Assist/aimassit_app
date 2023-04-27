@@ -338,7 +338,10 @@
 //   }
 // }
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:loginsys/src/features/authentication/screens/welcome/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
@@ -347,10 +350,13 @@ import '../../../../constants/colors.dart';
 import '../../../../constants/image_string.dart';
 import '../../../../constants/text_string.dart';
 import '../Dashboard/dashboard.dart';
+import 'package:http/http.dart' as http;
 
 class MyHomePage extends StatefulWidget {
   // const MyHomePage({Key? key, required this.title}) : super(key: key);
-  const MyHomePage({super.key});
+  final double distance;
+  final double device;
+  const MyHomePage({super.key, required this.distance, required this.device});
 
   // final String title;
 
@@ -364,6 +370,26 @@ class _MyHomePageState extends State<MyHomePage> {
   String _displayText = '';
   late String _token;
   late SharedPreferences prefs;
+  late String email;
+  late String id;
+
+  Future startSession() async {
+    Map<String, dynamic> user = JwtDecoder.decode(_token);
+    print(user["_id"]);
+    email = user["email"];
+    id = user["_id"];
+    var res = await http.post(
+        Uri.parse("http://localhost:8000/api/v1/session/startsession"),
+        // headers: <String, String>{
+        //   'Context-Type': 'application/json;charSet=UTF-8',
+        // },
+        body: {
+          "email": email,
+          "userid": id,
+          'distance': "${widget.distance}",
+          'device': "${widget.device}"
+        });
+  }
 
   @override
   void initState() {
@@ -489,7 +515,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: _timerActive ? null : _startTimer,
+              onPressed: () {
+                _timerActive ? null : _startTimer(); 
+                startSession();
+              },
               child: Text('START'),
             ),
           ],

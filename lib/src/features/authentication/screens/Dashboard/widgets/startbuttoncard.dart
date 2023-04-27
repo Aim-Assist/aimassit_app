@@ -150,8 +150,8 @@ class JourneyCard extends StatefulWidget {
 }
 
 class _JourneyCardState extends State<JourneyCard> {
-  double _distance = 0.0;
-  String _device = '';
+  double _distance = 0;
+  double _device = 0;
 
   void _showDialog(BuildContext context) {
     showDialog(
@@ -176,7 +176,7 @@ class _JourneyCardState extends State<JourneyCard> {
                   hintText: 'Device',
                 ),
                 onChanged: (value) {
-                  _device = value;
+                  _device = double.parse(value);
                 },
               ),
             ],
@@ -187,7 +187,7 @@ class _JourneyCardState extends State<JourneyCard> {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const MyHomePage(),
+                    builder: (context) => MyHomePage(device: _device, distance: _distance,),
                   ),
                 );
               },
@@ -219,8 +219,8 @@ class _JourneyCardState extends State<JourneyCard> {
               flex: 3,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
+                children: const [
+                  Text(
                     'Start your Aimassist journey ',
                     style: TextStyle(
                       fontSize: 18,
@@ -228,7 +228,7 @@ class _JourneyCardState extends State<JourneyCard> {
                       color: Colors.white,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  SizedBox(height: 10),
                   Icon(
                     Icons.arrow_right_alt,
                     color: Colors.white,
