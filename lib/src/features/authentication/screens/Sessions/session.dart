@@ -372,18 +372,19 @@ class _MyHomePageState extends State<MyHomePage> {
   late SharedPreferences prefs;
   late String email;
   late String id;
+  late List _data = [];
 
   Future startSession() async {
     Map<String, dynamic> user = JwtDecoder.decode(_token);
     print(user["_id"]);
     email = user["email"];
     id = user["_id"];
-    var res = await http.post(
-        Uri.parse("http://localhost:8000/api/v1/session/startsession"),
-        // headers: <String, String>{
-        //   'Context-Type': 'application/json;charSet=UTF-8',
-        // },
-        body: {
+    var res = await http
+        .post(Uri.parse("http://localhost:8000/api/v1/session/startsession"),
+            // headers: <String, String>{
+            //   'Context-Type': 'application/json;charSet=UTF-8',
+            // },
+            body: {
           "email": email,
           "userid": id,
           'distance': "${widget.distance}",
@@ -406,10 +407,28 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _getData() async {
+    Timer.periodic(const Duration(seconds: 1), (Timer timer) async {
+      var res = await http.get(Uri.parse(
+          "http://localhost:8000/api/v1/session/getsession?device=${widget.device}"));
+      var resBody = json.decode(res.body);
+      setState(() {
+        _data = resBody["data"]["score"];
+      });
+      print(_data);
+      if (_data.length == 10) {
+        timer.cancel();
+        // ignore: use_build_context_synchronously
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Can\'t add more than 10 scores')));
+      }
+    });
+  }
+
   void _startTimer() {
     _timerActive = true;
     _timerSeconds += 1;
-    Timer.periodic(Duration(seconds: 1), (Timer timer) {
+    Timer.periodic(const Duration(seconds: 1), (Timer timer) {
       setState(() {
         if (_timerSeconds < 1) {
           timer.cancel();
@@ -494,9 +513,10 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
       ),
-      body: Center(
+      body: Container(
+        margin: const EdgeInsets.all(20),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             AnimatedSwitcher(
               duration: const Duration(milliseconds: 500),
@@ -516,10 +536,102 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                _timerActive ? null : _startTimer(); 
+                _timerActive ? null : _startTimer();
                 startSession();
+                _getData();
               },
               child: Text('START'),
+            ),
+            SizedBox(height: 20),
+            Text("Score Board", style: displayTextStyle),
+            SizedBox(height: 20),
+            // if (_data.length > 0)
+            Table(
+              border: const TableBorder(
+                horizontalInside: BorderSide(
+                  width: 2,
+                  color: Color.fromARGB(255, 0, 0, 0),
+                ),
+                verticalInside: BorderSide(
+                  width: 2,
+                  color: Color.fromARGB(255, 0, 0, 0),
+                ),
+                top: BorderSide(
+                  width: 2,
+                  color: Color.fromARGB(255, 0, 0, 0),
+                ),
+                bottom: BorderSide(
+                  width: 2,
+                  color: Color.fromARGB(255, 0, 0, 0),
+                ),
+              ),
+              children: [
+                const TableRow(
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 252, 238, 238),
+                    ),
+                    children: [
+                      TableCell(
+                          child: Text('Index',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center)),
+                      TableCell(
+                        child: Text('Angle',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center),
+                      ),
+                      TableCell(
+                          child: Text('Distance',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center)),
+                      TableCell(
+                          child: Text('Score',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center)),
+                    ]),
+                for (int i = 1; i <= _data.length; i++)
+                  TableRow(
+                      decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 252, 238, 238),
+                      ),
+                      children: [
+                        TableCell(
+                            child: Text(
+                          '$i',
+                          style: TextStyle(color: Colors.black),
+                          textAlign: TextAlign.center,
+                        )),
+                        TableCell(
+                            child: Text(
+                                i - 1 < 2
+                                    ? "30"
+                                    : i - 1 < 4
+                                        ? "60"
+                                        : i - 1 < 6
+                                            ? "90"
+                                            : i - 1 < 8
+                                                ? "120"
+                                                : "150",
+                                style: TextStyle(color: Colors.black),
+                                textAlign: TextAlign.center)),
+                        TableCell(
+                            child: Text('${widget.distance}',
+                                style: TextStyle(color: Colors.black),
+                                textAlign: TextAlign.center)),
+                        TableCell(
+                            child: Text('${_data[i - 1]}',
+                                style: TextStyle(color: Colors.black),
+                                textAlign: TextAlign.center)),
+                      ]),
+              ],
             ),
           ],
         ),

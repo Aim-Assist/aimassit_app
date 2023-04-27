@@ -8,6 +8,7 @@ import 'package:loginsys/src/constants/colors.dart';
 import 'package:loginsys/src/constants/image_string.dart';
 import 'package:loginsys/src/constants/sizes.dart';
 import 'package:loginsys/src/constants/text_string.dart';
+import 'package:loginsys/src/features/app/pages/profile_Screen.dart';
 import 'package:loginsys/src/features/authentication/screens/Dashboard/widgets/Scrollable.dart';
 import 'package:loginsys/src/features/authentication/screens/Dashboard/widgets/prevsessionbutton.dart';
 import 'package:loginsys/src/features/authentication/screens/Dashboard/widgets/startbuttoncard.dart';
@@ -117,7 +118,7 @@ class _DashboardState extends State<Dashboard> {
             child: IconButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const FullScreenUI()));
+                      builder: (context) => const MyHomePage1(title: '',)));
                 },
                 icon: const Image(image: AssetImage(tUserprofileImage))),
           )

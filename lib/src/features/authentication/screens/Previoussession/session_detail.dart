@@ -82,22 +82,22 @@ class _SessionDetailScreenState extends State<SessionDetailScreen> {
                 ),
                 SizedBox(height: 20),
                 Table(
-                  border: TableBorder(
+                  border: const TableBorder(
                     horizontalInside: BorderSide(
                       width: 2,
-                      color: Color.fromARGB(255, 0, 0, 0)!,
+                      color: Color.fromARGB(255, 0, 0, 0),
                     ),
                     verticalInside: BorderSide(
                       width: 2,
-                      color: Color.fromARGB(255, 0, 0, 0)!,
+                      color: Color.fromARGB(255, 0, 0, 0),
                     ),
                     top: BorderSide(
                       width: 2,
-                      color: Color.fromARGB(255, 0, 0, 0)!,
+                      color: Color.fromARGB(255, 0, 0, 0),
                     ),
                     bottom: BorderSide(
                       width: 2,
-                      color: Color.fromARGB(255, 0, 0, 0)!,
+                      color: Color.fromARGB(255, 0, 0, 0),
                     ),
                   ),
                   children: [
