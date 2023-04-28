@@ -1,6 +1,6 @@
 class LineModel {
   final int session;
-  final int accuracy;
+  final double accuracy;
 
   LineModel(this.session, this.accuracy);
 }

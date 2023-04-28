@@ -37,7 +37,7 @@ class _LoginFormState extends State<LoginForm> {
   Future save() async {
     try {
       var res = await http.post(
-          Uri.parse("http://localhost:8000/api/v1/user/login"),
+          Uri.parse("https://aimassist-server.onrender.com/api/v1/user/login"),
           // headers: <String, String>{
           //   'Context-Type': 'application/json;charSet=UTF-8',
           // },
@@ -46,6 +46,7 @@ class _LoginFormState extends State<LoginForm> {
             'password': "${loginUser.password}"
           });
       var jsonRes = jsonDecode(res.body);
+      print(jsonRes);
       print(jsonRes['token']);
       if (jsonRes['success'] == true) {
         prefs.setString('token', jsonRes['token']);

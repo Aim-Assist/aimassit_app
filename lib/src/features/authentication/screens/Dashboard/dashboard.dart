@@ -41,21 +41,21 @@ class _DashboardState extends State<Dashboard> {
   late Map<int, int> freq;
 
   Future getBarData() async {
-    
-    var res = await http.get(
-        Uri.parse("http://localhost:8000/api/v1/user/getUser?id=$id"));
-        // headers: <String, String>{
-        //   'Context-Type': 'application/json;charSet=UTF-8',
-        // });
+    var res = await http.get(Uri.parse(
+        "https://aimassist-server.onrender.com/api/v1/user/getUser?id=$id"));
+    // headers: <String, String>{
+    //   'Context-Type': 'application/json;charSet=UTF-8',
+    // });
 
     user = jsonDecode(res.body);
-    for (var i = 0; i < 10; i++) {
-      barData.add(user['data']['latest_score'][i][2]);
-    }
-    for (var i = 0; i < 5; i++) {
-      lineData.add(user['data']['latestfrequency']["${i+1}"]);
-    }
     setState(() {
+      for (var i = 0; i < 10; i++) {
+        barData.add(user['data']['latest_score'][i][2]);
+      }
+      for (var i = 0; i < 5; i++) {
+        lineData.add(user['data']['latestfrequency']["${i + 1}"]);
+      }
+      DashboardCategoriesModel.list.clear();
       DashboardCategoriesModel.list.add(DashboardCategoriesModel("Accuracy",
           "Score", "${user['data']["latestroundData"]["accuracy"]}", null));
       DashboardCategoriesModel.list.add(DashboardCategoriesModel("Distance",
@@ -82,22 +82,6 @@ class _DashboardState extends State<Dashboard> {
     prefs = await SharedPreferences.getInstance();
   }
 
-  Future save() async {
-    var res = await http.post(
-        Uri.parse("http://localhost:8000/api/v1/user/logout"),
-        headers: <String, String>{
-          'Context-Type': 'application/json;charSet=UTF-8',
-        },
-        body: <String, String>{
-          '_id': id,
-        });
-    // ignore: avoid_print
-    prefs.remove('token');
-    // ignore: use_build_context_synchronously
-    Navigator.push(
-        context, new MaterialPageRoute(builder: (context) => WelcomeScreen()));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,7 +102,9 @@ class _DashboardState extends State<Dashboard> {
             child: IconButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const MyHomePage1(title: '',)));
+                      builder: (context) => MyHomePage1(
+                            token: widget.token,
+                          )));
                 },
                 icon: const Image(image: AssetImage(tUserprofileImage))),
           )
@@ -134,27 +120,27 @@ class _DashboardState extends State<Dashboard> {
               Text(tDashboardHeading,
                   style: Theme.of(context).textTheme.headlineLarge),
 
-              SizedBox(height: 6),
+              const SizedBox(height: 6),
 
               DashboardScrollable(
                 list2: DashboardCategoriesModel.list,
               ),
 
-              SizedBox(height: 6),
+              const SizedBox(height: 6),
 
-              JourneyCard(),
+              const JourneyCard(),
 
-              SizedBox(height: 6),
+              const SizedBox(height: 6),
 
-              PreJourneyCard(),
+              const PreJourneyCard(),
 
-              SizedBox(height: 6),
+              const SizedBox(height: 6),
 
               Text("Your Latest Score",
                   style: Theme.of(context).textTheme.headlineSmall),
               Barchart(userData: barData),
 
-              SizedBox(height: 6),
+              const SizedBox(height: 6),
 
               Text("Your Latest Sessions Frequency",
                   style: Theme.of(context).textTheme.headlineSmall),

@@ -380,7 +380,7 @@ class _MyHomePageState extends State<MyHomePage> {
     email = user["email"];
     id = user["_id"];
     var res = await http
-        .post(Uri.parse("http://localhost:8000/api/v1/session/startsession"),
+        .post(Uri.parse("https://aimassist-server.onrender.com/api/v1/session/startsession"),
             // headers: <String, String>{
             //   'Context-Type': 'application/json;charSet=UTF-8',
             // },
@@ -410,7 +410,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _getData() async {
     Timer.periodic(const Duration(seconds: 1), (Timer timer) async {
       var res = await http.get(Uri.parse(
-          "http://localhost:8000/api/v1/session/getsession?device=${widget.device}"));
+          "https://aimassist-server.onrender.com/api/v1/session/getsession?device=${widget.device}"));
       var resBody = json.decode(res.body);
       setState(() {
         _data = resBody["data"]["score"];
