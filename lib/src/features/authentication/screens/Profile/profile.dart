@@ -288,6 +288,7 @@ class _FullScreenUIState extends State<FullScreenUI> {
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () {
+                              Navigator.pop(context);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

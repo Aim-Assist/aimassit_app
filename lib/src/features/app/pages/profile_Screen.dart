@@ -76,6 +76,7 @@ class _MyHomePageState extends State<MyHomePage1> {
     // ignore: avoid_print
     prefs.remove('token');
     // ignore: use_build_context_synchronously
+    Navigator.pop(context);
     Navigator.push(context,
         new MaterialPageRoute(builder: (context) => const WelcomeScreen()));
   }

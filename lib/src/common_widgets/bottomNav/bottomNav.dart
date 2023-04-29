@@ -32,6 +32,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               setState(() {
                 _currentIndex = 0;
               });
+              Navigator.pop(context);
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => LineChartWidget(userData: [],)),
@@ -48,6 +49,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               setState(() {
                 _currentIndex = 1;
               });
+              Navigator.pop(context);
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => Barchart(userData: [],))

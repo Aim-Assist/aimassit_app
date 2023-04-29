@@ -15,6 +15,7 @@ class WelcomeScreen extends StatelessWidget {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     late String token = prefs.getString('token')!;
     if (token != null && token.isNotEmpty) {
+      Navigator.pop(context);
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => Dashboard(token: token)),

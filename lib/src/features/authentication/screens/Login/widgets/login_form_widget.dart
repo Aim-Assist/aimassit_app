@@ -50,6 +50,7 @@ class _LoginFormState extends State<LoginForm> {
       print(jsonRes['token']);
       if (jsonRes['success'] == true) {
         prefs.setString('token', jsonRes['token']);
+        Navigator.pop(context);
         // ignore: use_build_context_synchronously
         Navigator.push(
             context,

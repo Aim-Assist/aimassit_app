@@ -50,6 +50,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
           'phoneno': user.phoneno,
           'password': user.password
         });
+    Navigator.pop(context);
     // ignore: avoid_print
     // ignore: use_build_context_synchronously
     Navigator.push(

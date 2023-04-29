@@ -467,6 +467,7 @@ class _MyHomePageState extends State<MyHomePage> {
             actions: [
               ElevatedButton(
                 onPressed: () {
+                  Navigator.pop(context);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -627,7 +628,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 style: TextStyle(color: Colors.black),
                                 textAlign: TextAlign.center)),
                         TableCell(
-                            child: Text('${_data[i - 1]}',
+                            child: Text('${_data[i - 1][2]}',
                                 style: TextStyle(color: Colors.black),
                                 textAlign: TextAlign.center)),
                       ]),
